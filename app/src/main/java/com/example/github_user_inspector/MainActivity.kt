@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,8 +21,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.github_user_inspector.presentation.screens.HomeScreen
 import com.example.github_user_inspector.ui.theme.Github_user_inspectorTheme
+import com.example.github_user_inspector.ui.theme.PorcelainBlue
 
-class MainActivity : ComponentActivity() {
+    class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +44,8 @@ class MainActivity : ComponentActivity() {
                                     onClick = {}
                                 ) {
                                     Icon(
-                                        modifier = Modifier.size(23.dp),
                                         painter = painterResource(R.drawable.search),
-                                        contentDescription = null
+                                        contentDescription = null,
                                     )
                                 }
                             }

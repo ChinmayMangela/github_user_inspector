@@ -9,19 +9,24 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.github_user_inspector.R
 import com.example.github_user_inspector.ui.theme.BabyBlue
 import com.example.github_user_inspector.ui.theme.Blue300
 import com.example.github_user_inspector.ui.theme.LightNavy
@@ -59,9 +64,17 @@ fun UserInfoComponent() {
                     shape = RoundedCornerShape(8.dp)
                 ) {
                     Row(
+                        verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.padding(5.dp)
                     ) {
-                        Text("Public repositories: 12", style = MaterialTheme
+                        Icon(
+                            modifier = Modifier.size(14.dp),
+                            painter = painterResource(R.drawable.star),
+                            contentDescription = null,
+                            tint = LightNavy
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("Public Repositories: 12", style = MaterialTheme
                             .typography
                             .titleMedium.copy(
                                 color = LightNavy,
