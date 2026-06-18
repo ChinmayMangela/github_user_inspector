@@ -32,7 +32,7 @@ fun RepositoryCard() {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(9.dp),
+            .padding(15.dp),
         shape = RoundedCornerShape(10.dp)
     ) {
         Column(
@@ -81,7 +81,7 @@ fun RepositoryCard() {
             Text(
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                text = "This is something i built on todays morning. I leveraged tech native android with kotlin and jetpack compose"
+                text = "This is something i built on today's morning. I leveraged tech native android with kotlin and jetpack compose"
             )
         }
     }
