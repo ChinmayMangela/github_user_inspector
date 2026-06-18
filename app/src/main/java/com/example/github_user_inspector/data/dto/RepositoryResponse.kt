@@ -8,8 +8,7 @@ import kotlinx.serialization.Serializable
 data class RepositoryResponse(
     val name: String?,
 
-    @SerialName("language")
-    val programmingLanguage: String?,
+    val language: String?,
 
     @SerialName("stargazers_count")
     val starCount: Int?,
@@ -20,7 +19,7 @@ data class RepositoryResponse(
     fun toEntity(): RepositoryEntity {
         return RepositoryEntity(
             name =  name ?: "Unknown",
-            programmingLanguage = programmingLanguage ?: "Unknown",
+            language = language ?: "Unknown",
             starCounts = starCount ?: 0,
             description = description ?: "No description available"
         )

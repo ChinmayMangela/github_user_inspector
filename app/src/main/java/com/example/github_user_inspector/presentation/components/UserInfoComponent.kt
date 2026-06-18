@@ -24,16 +24,17 @@ import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.github_user_inspector.R
+import com.example.github_user_inspector.domain.entity.UserEntity
 import com.example.github_user_inspector.ui.theme.BabyBlue
 import com.example.github_user_inspector.ui.theme.Blue300
 import com.example.github_user_inspector.ui.theme.LightNavy
 
-@Preview(showBackground = true)
 @Composable
-fun UserInfoComponent() {
+fun UserInfoComponent(
+    userEntity: UserEntity
+) {
     Box(
         modifier = Modifier.fillMaxWidth()
             .height(120.dp)
@@ -46,12 +47,12 @@ fun UserInfoComponent() {
         ) {
             GithubOctoIcon()
 
-            Column() {
-                Text("Chinmay Mangela", style = MaterialTheme.typography.headlineSmall.copy(
+            Column {
+                Text(userEntity.name, style = MaterialTheme.typography.headlineSmall.copy(
                     fontWeight = FontWeight.Bold,
                 ), overflow = TextOverflow.Ellipsis)
                 Spacer(modifier = Modifier.height(2.dp))
-                Text("@chinmaymangela", style = MaterialTheme.typography
+                Text(userEntity.userName, style = MaterialTheme.typography
                     .bodyLarge.copy(
                         color = Gray
                     ), overflow = TextOverflow.Ellipsis)
@@ -74,7 +75,7 @@ fun UserInfoComponent() {
                             tint = LightNavy
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("Public Repositories: 12", style = MaterialTheme
+                        Text("Public Repositories: ${userEntity.publicRepoCount}", style = MaterialTheme
                             .typography
                             .titleMedium.copy(
                                 color = LightNavy,

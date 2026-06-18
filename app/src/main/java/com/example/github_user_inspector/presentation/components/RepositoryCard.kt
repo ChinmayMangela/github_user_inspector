@@ -26,9 +26,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.github_user_inspector.R
+import com.example.github_user_inspector.domain.entity.RepositoryEntity
 
 @Composable
-fun RepositoryCard() {
+fun RepositoryCard(
+    repositoryEntity: RepositoryEntity
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -36,7 +39,7 @@ fun RepositoryCard() {
         shape = RoundedCornerShape(10.dp)
     ) {
         Column(
-            modifier = Modifier.padding(6.dp)
+            modifier = Modifier.padding(12.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -44,11 +47,16 @@ fun RepositoryCard() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    "github_user_inspector", style = MaterialTheme.typography
-                        .titleLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                        ), overflow = TextOverflow.Ellipsis
+                    text = repositoryEntity.name,
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        fontWeight = FontWeight.Bold,
+                    ),
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                    modifier = Modifier.weight(1f)
                 )
+
+                Spacer(modifier = Modifier.width(8.dp))
 
                 Card(
                     shape = RoundedCornerShape(6.dp),
@@ -56,7 +64,12 @@ fun RepositoryCard() {
                         containerColor = LightGray
                     ),
                 ) {
-                    Text("JavaScript", modifier = Modifier.padding(5.dp))
+                    Text(
+                        text = repositoryEntity.language,
+                        modifier = Modifier.padding(5.dp),
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1
+                    )
                 }
             }
             Spacer(Modifier.height(3.dp))
@@ -71,17 +84,19 @@ fun RepositoryCard() {
                     contentDescription = "star"
                 )
                 Spacer(Modifier.width(5.dp))
-                Text("14", style = MaterialTheme.typography
-                    .bodyMedium.copy(
-                        fontWeight = FontWeight.Bold,
-                        color = DarkGray
-                    ))
+                Text(
+                    repositoryEntity.starCounts.toString(), style = MaterialTheme.typography
+                        .bodyMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = DarkGray
+                        )
+                )
             }
             Spacer(Modifier.height(10.dp))
             Text(
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                text = "This is something i built on today's morning. I leveraged tech native android with kotlin and jetpack compose"
+                text = repositoryEntity.description
             )
         }
     }
@@ -90,5 +105,7 @@ fun RepositoryCard() {
 @Preview(showBackground = true)
 @Composable
 private fun RepositoryCardPreview() {
-    RepositoryCard()
+    RepositoryCard(RepositoryEntity("some name", "kotlin",
+        12,
+        "This is what i built on todays morning using kotlin and jetpack compose"))
 }

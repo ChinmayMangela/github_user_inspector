@@ -21,6 +21,14 @@ class GithubViewModel(
     private val _githubUiState = MutableStateFlow<GithubUiState>(GithubUiState.Idle)
     val githubUiState = _githubUiState.asStateFlow()
 
+    fun onQueryChanged(newQuery: String) {
+        _userQuery.value = newQuery
+    }
+
+    fun clearQuery() {
+        _userQuery.value = ""
+    }
+
 
     fun fetchUserData() {
         val currentQuery = _userQuery.value.trim()
